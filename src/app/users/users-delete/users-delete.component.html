@@ -1,0 +1,42 @@
+<mat-card>
+
+  <mat-card-header>
+    <mat-card-title>Apagar Usuário</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+
+    <form>
+      <p>
+        <mat-form-field  class="full-width" >
+          <input matInput [(ngModel)]="user.name"  name="name" [disabled]="true">
+        </mat-form-field>
+      </p>
+
+
+      <p>
+        <mat-form-field  class="full-width">
+          <mat-label>Insira o Email</mat-label >
+          <input matInput [(ngModel)]="user.email" name="email" [disabled]="true">
+        </mat-form-field>
+      </p>
+
+
+
+
+<!--      <mat-form-field  class="full-width">-->
+<!--        <mat-label >Selecione o Perfil</mat-label>-->
+<!--        <mat-select formControlName="perfil">-->
+<!--          <mat-option value="super">Super</mat-option>-->
+<!--          <mat-option value="normal">Não Super</mat-option>-->
+<!--        </mat-select>-->
+<!--      </mat-form-field>-->
+    </form>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="warn" (click)="delete()">Deletar</button>
+    <button mat-raised-button (click)="onCancel()">Cancelar</button>
+  </mat-card-actions>
+</mat-card>
+

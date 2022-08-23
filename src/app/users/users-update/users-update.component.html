@@ -1,0 +1,67 @@
+<mat-card>
+
+  <mat-card-header>
+    <mat-card-title>Atualizar Cadastro</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+
+    <form>
+      <p>
+        <mat-form-field  class="full-width">
+          <input matInput [(ngModel)]="user.name" name="name" >
+        </mat-form-field>
+      </p>
+
+
+      <p>
+        <mat-form-field  class="full-width">
+          <mat-label>Insira o Email</mat-label>
+          <input matInput [(ngModel)]="user.email" name="email" required>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field  class="full-width">
+          <mat-label>Insira sua senha</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'"  [(ngModel)]="user.senha" name="senha">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </p>
+
+
+
+      <mat-form-field  class="full-width">
+        <mat-label >Selecione o Perfil</mat-label>
+        <mat-select [(ngModel)]="user.perfil" name="perfil">
+          <mat-option value="Administrador">Administrador</mat-option>
+          <mat-option value="Usuario">Usuário</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field  class="full-width">
+        <mat-label >Validar Usuário</mat-label>
+        <mat-select [(ngModel)]="user.validado" name="validado">
+          <mat-option value="">Não</mat-option>
+          <mat-option value="Sim">Sim</mat-option>
+        </mat-select>
+
+      </mat-form-field>
+
+<!--      <mat-form-field  class="full-width">-->
+<!--        <mat-label >Selecione o Perfil</mat-label>-->
+<!--        <mat-select name="perfil">-->
+<!--          <mat-option value="super">Super</mat-option>-->
+<!--          <mat-option value="normal">Não Super</mat-option>-->
+<!--        </mat-select>-->
+<!--      </mat-form-field>-->
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="update()">Salvar</button>
+    <button mat-raised-button (click)="onCancel()">Cancelar</button>
+  </mat-card-actions>
+
+</mat-card>

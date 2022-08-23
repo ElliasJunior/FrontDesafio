@@ -1,0 +1,59 @@
+<mat-card>
+
+  <mat-card-header>
+    <mat-card-title>Validar Cadastro</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+
+    <form>
+      <p>
+        <mat-form-field  class="full-width">
+          <input matInput [(ngModel)]="user.name" name="name" [disabled]="true">
+        </mat-form-field>
+      </p>
+
+
+      <p>
+        <mat-form-field  class="full-width">
+          <mat-label>Insira o Email</mat-label>
+          <input matInput [(ngModel)]="user.email" name="email" [disabled]="true">
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field  class="full-width">
+          <mat-label>Insira sua senha</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'"  [(ngModel)]="user.senha" name="senha" [disabled]="true">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </p>
+
+
+
+
+      <mat-form-field  class="full-width">
+        <mat-label >Validar Conta</mat-label>
+        <mat-select [(ngModel)]="user.validado" name="validado">
+          <mat-option value="Sim">Validar Conta</mat-option>
+
+        </mat-select>
+      </mat-form-field>
+
+      <!--      <mat-form-field  class="full-width">-->
+      <!--        <mat-label >Selecione o Perfil</mat-label>-->
+      <!--        <mat-select name="perfil">-->
+      <!--          <mat-option value="super">Super</mat-option>-->
+      <!--          <mat-option value="normal">Não Super</mat-option>-->
+      <!--        </mat-select>-->
+      <!--      </mat-form-field>-->
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="update()">Salvar</button>
+    <button mat-raised-button (click)="onCancel()">Cancelar</button>
+  </mat-card-actions>
+
+</mat-card>

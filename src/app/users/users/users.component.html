@@ -1,0 +1,108 @@
+<mat-card>
+
+  <mat-toolbar color="primary">
+    <span> Bem vindo {{nomeExibir}}</span>
+
+    <div style="padding-left: 80%"></div>
+    <div class="example-button-row">
+      <button mat-flat-button (click)="logout()">Logout</button>
+    </div>
+
+    <mat-header-cell *matHeaderCellDef>
+      <button mat-icon-button color="accent" aria-label="Adicionar usuário">
+        <mat-icon (click)="onAdd()">add</mat-icon>
+      </button>
+    </mat-header-cell>
+  </mat-toolbar>
+  <div *ngIf="admin == true">
+
+<div *ngIf="users$ | async as users; else loading " >
+<table mat-table [dataSource]="users" class="mat-elevation-z8">
+
+  <!-- ID Column -->
+  <ng-container matColumnDef="_id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let user"> {{user._id }} </td>
+  </ng-container>
+
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Nome </th>
+    <td mat-cell *matCellDef="let user"> {{user.name }} </td>
+  </ng-container>
+
+  <!-- Email Column -->
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> Email </th>
+    <td mat-cell *matCellDef="let user"> {{user.email }} </td>
+  </ng-container>
+
+  <!-- Senha Column -->
+  <ng-container matColumnDef="senha">
+    <th mat-header-cell *matHeaderCellDef> Senha </th>
+    <td mat-cell *matCellDef="let user"> {{user.senha }} </td>
+  </ng-container>
+
+  <!-- Perfil Column -->
+  <ng-container matColumnDef="perfil">
+    <th mat-header-cell *matHeaderCellDef> Perfil </th>
+    <td mat-cell *matCellDef="let user"> {{user.perfil }} </td>
+  </ng-container>
+
+  <!-- Perfil Column -->
+  <ng-container matColumnDef="validado">
+    <th mat-header-cell *matHeaderCellDef> Conta Validada </th>
+    <td mat-cell *matCellDef="let user"> {{user.validado }} </td>
+  </ng-container>
+
+
+  <!-- Actions Column -->
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>
+      <button mat-icon-button color="accent" aria-label="Adicionar usuário">
+        <mat-icon (click)="onAdd()">add</mat-icon>
+      </button>
+    </mat-header-cell>
+
+    <mat-cell *matCellDef="let user">
+      <button mat-icon-button color="primary" aria-label="Editar">
+        <mat-icon routerLink="update/{{user._id}}" >edit</mat-icon>
+      </button>
+
+      <button mat-icon-button color="warn" aria-label="Remover">
+        <mat-icon  routerLink="delete/{{user._id}}">delete</mat-icon>
+      </button>
+
+      <div class="example-button-row">
+        <button mat-flat-button (click)="reset(user._id)">Reset</button>
+      </div>
+
+    </mat-cell>
+
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>
+
+  <ng-template #loading>
+    <div class="loading-spinner">
+    <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+
+  </div>
+
+
+  <div *ngIf="valid != false">
+    <mat-toolbar color="warn">
+      <span> Usuário não validado, favor verificar seu email </span>
+    </mat-toolbar>
+  </div>
+
+
+</mat-card>
